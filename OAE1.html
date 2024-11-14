@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Class and Exam Scheduler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(sky_2051202.jpg);
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: linear-gradient(45deg,#020024,#090979,#05b2d5);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(46, 45, 45);
+          
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+           
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Online Class and Exam Scheduling</h1>
+
+    <form id="scheduleForm">
+     
+
+        <div class="form-group">
+            <label for="Select">Select:</label>
+            <select id="Select" name="Select" required>
+                <option value="">Select...</option>
+                <option value="Online Class">Online Class</option>
+                <option value="Exam">Exam</option>
+                <option value="Asynchronous class ">Asynchronous class </option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Subject">Subject:</label>
+            <input type="text" id="Subject" name="Subject" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" value="2024-11-14" required>
+        </div>
+
+        <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+        </div>
+
+        <button type="button" onclick="Submit()">Submit</button>
+    </form>
+
+    <h2>Update Schedule</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="eventTableBody">
+            <!-- Scheduled events will appear here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function Submit() {
+        const Select = document.getElementById('Select').value;
+        const Subject = document.getElementById('Subject').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if (!Select || !Subject || !date || !time) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        const tableBody = document.getElementById('eventTableBody');
+        const newRow = document.createElement('tr');
+    
+        
+        newRow.innerHTML = `
+            <td>${Select}</td>
+            <td>${Subject}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+        `;
+
+        tableBody.appendChild(newRow);
+
+        // Reset form
+        document.getElementById('scheduleForm').reset();
+    }
+</script>
+
+</body>
+</html>
